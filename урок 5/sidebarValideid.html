@@ -12,7 +12,7 @@
 <body>
     <div class="wrapper">
         <div class="sample">
-            <form>
+            <form @submit.prevent="formSubmited = true" v-if="!formSubmited">
         		<div class="progress">
 					<div class="progress-bar" :style="progressWidth"></div>
 				</div>
@@ -35,7 +35,7 @@
 				</button>
 				{{ done }}
 			</form>
-			<div>
+			<div v-else>
 				<table class="table table-bordered" >
 					<tr v-for="(item, index) in info">
 						<td>{{ item.name }}</td>
@@ -78,6 +78,7 @@
 					}
 				], 
 				controls:[],
+				formSubmited: false,
 			},
 			beforeMount(){
 				for(let i=0; i<this.info.length; i++){
